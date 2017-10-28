@@ -1,6 +1,6 @@
 $(document).ready(populateExistingCards(findExistingCards()));
 $('.save-btn').on('click', createCard);
-$('.crd-ctnr').on('click', '.delete-button', deleteIdeaCard);
+$('.crd-ctnr').on('click', '.del-btn', deleteIdeaCard);
 $('.crd-ctnr').on('click', '.up-btn', upvoteQuality);
 $('.crd-ctnr').on('click', '.down-btn', downvoteQuality);
 $('.crd-ctnr').on('blur', '.crd-title', changeIdeaTitle);
@@ -53,7 +53,7 @@ function prependIdeaCard(id, title, body, quality) {
         <h2 class="crd-title" contenteditable="true">${title}</h2> 
         <button class="del-btn" name="delete button"></button>
       </header>
-      <p class="crd-body" contenteditable="true">${body}</p>
+      <p class="crd-task" contenteditable="true">${body}</p>
       <footer class="crd-ftr">
         <button class="up-btn" name="more important"></button>
         <button class="down-btn" name="less important"></button>
@@ -93,6 +93,7 @@ function upvoteQuality() {
   var qualityArray = ['swill', 'plausible', 'genius'];
   var currentQuality = $(this).siblings('.imp-val').text();
   var currentIndex = qualityArray.indexOf(currentQuality);
+  console.log('up')
 
   if(currentIndex < 2) {
     currentIndex++;
@@ -109,6 +110,8 @@ function downvoteQuality() {
   var qualityArray = ['swill', 'plausible', 'genius'];
   var currentQuality = $(this).siblings('.imp-val').text();
   var currentIndex = qualityArray.indexOf(currentQuality);
+
+  console.log('down')
 
   if(currentIndex > 0){
     currentIndex--;
