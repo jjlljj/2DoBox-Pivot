@@ -47,22 +47,19 @@ function populateExistingCards(keyValues) {
 }
 
 function prependIdeaCard(id, title, body, quality) {
-  $('#idea-card-storage').prepend(
-    `
-    <article class="idea-card" id="${id}">
-      <div class="card-header">
-        <h2 class="card-title" contenteditable="true">${title}</h2> 
-        <button class="delete-button" name="delete button"><img src="FEE-ideabox-icon-assets/transparent.png" width="30px" height="30px"></button>
-      </div>
-      <p class="card-body" contenteditable="true">${body}</p>
-      <div class="card-footer">
-        <button class="upvote-button" name="upvote button"></button>
-        <button class="downvote-button" name="downvote button"></button>
-        <h3 class="quality">quality:</h3>
-        <h3 class="quality-option">${quality}</h3>
-      </div>
-    </article>
-    `
+  $('.crd-ctnr').prepend(
+    `<article class="2do-crd" id="${id}">
+      <header class="crd-hdr">
+        <h2 class="crd-title" contenteditable="true">${title}</h2> 
+        <button class="del-btn" name="delete button"><img src="FEE-ideabox-icon-assets/transparent.png" width="30px" height="30px"></button>
+      </header>
+      <p class="crd-body" contenteditable="true">${body}</p>
+      <footer class="crd-ftr">
+        <button class="up-btn" name="more important"></button>
+        <button class="down-btn" name="less important"></button>
+        <h3 class="imp-title">Importance: <span class="imp-val">${quality}</span></h3>
+      </footer>
+    </article>`
   );
 }
 
