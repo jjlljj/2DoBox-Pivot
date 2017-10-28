@@ -1,31 +1,27 @@
 <!doctype html>
 <html lang='en'>
   <head>
-    <link rel="stylesheet" type="text/css" href="reset.css">
-    <link type="text/css" rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/reset.css">
+    <link type="text/css" rel="stylesheet" href="styles/style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab:700" rel="stylesheet">
     <title>Ideabox</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
   </head>
   <body>
-    <section class="user-input">
-      <h1>idea<span style="color: #6D6E71;">box</h1>
+    <section class="usr-input">
+      <h1><span class="brand-clr">2Do</span>Box</h1>
       <form>
-        <label for="title-input"></label>
-        <input id="title-input" placeholder="Title">
-        <label for="body-input"></label>
-        <input id="body-input" placeholder="Body">
-        <button id="save-button">save</button>
+        <input label="title input" class="title-input" placeholder="Title">
+        <input label="body input" class="body-input" placeholder="Body">
+        <button class="save-btn">save</button>
       </form>
     </section>
-    <section class="search-bar">
-       <label for="search-bar-input"></label>
-       <input id="search-bar-input" placeholder="Search">
+    <section class="srch-wrap">
+       <input label="search bar input" class="srch-input" placeholder="Search">
     </section>
-    <section id="idea-card-storage">
-    </section>
+    <section class="crd-ctnr"></section>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="jquery-3.2.1.min.js"><\/script>')</script>
-    <script type="text/javascript" src="script.js"></script>
+    <script>window.jQuery || document.write('<script src="scripts/jquery-3.2.1.min.js"><\/script>')</script>
+    <script type="text/javascript" src="scripts/script.js"></script>
   </body> 
 </html>
