@@ -1,13 +1,13 @@
 $(document).ready(populateExistingCards(findExistingCards()));
-$('#save-button').on('click', createCard);
-$('#idea-card-storage').on('click', '.delete-button', deleteIdeaCard);
-$('#idea-card-storage').on('click', '.upvote-button', upvoteQuality);
-$('#idea-card-storage').on('click', '.downvote-button', downvoteQuality);
-$('#idea-card-storage').on('blur', '.card-title', changeIdeaTitle);
-$('#idea-card-storage').on('blur', '.card-body', changeIdeaBody);
-$('#idea-card-storage').on('keypress', '.card-title', updateTitle);
-$('#idea-card-storage').on('keypress', '.card-body', updateBody);
-$('#search-bar-input').on('keyup', searchString);
+$('.save-btn').on('click', createCard);
+$('.crd-ctnr').on('click', '.delete-button', deleteIdeaCard);
+$('.crd-ctnr').on('click', '.up-btn', upvoteQuality);
+$('.crd-ctnr').on('click', '.down-btn', downvoteQuality);
+$('.crd-ctnr').on('blur', '.crd-title', changeIdeaTitle);
+$('.crd-ctnr').on('blur', '.crd-task', changeIdeaBody);
+$('.crd-ctnr').on('keypress', '.crd-title', updateTitle);
+$('.crd-ctnr').on('keypress', '.crd-task', updateBody);
+$('srch-input').on('keyup', searchString);
 
 function IdeaCardObject(id, title, body) {
   this.id = id;
@@ -18,7 +18,7 @@ function IdeaCardObject(id, title, body) {
 
 function createCard() {
   event.preventDefault();
-  var newCard = new IdeaCardObject(id = Date.now(), $('#title-input').val(), $('#body-input').val());
+  var newCard = new IdeaCardObject(id = Date.now(), $('.title-input').val(), $('.task-input').val());
   sendCardToLocalStorage(newCard);
 }
 
@@ -51,7 +51,7 @@ function prependIdeaCard(id, title, body, quality) {
     `<article class="2do-crd" id="${id}">
       <header class="crd-hdr">
         <h2 class="crd-title" contenteditable="true">${title}</h2> 
-        <button class="del-btn" name="delete button"><img src="FEE-ideabox-icon-assets/transparent.png" width="30px" height="30px"></button>
+        <button class="del-btn" name="delete button"></button>
       </header>
       <p class="crd-body" contenteditable="true">${body}</p>
       <footer class="crd-ftr">
@@ -85,18 +85,18 @@ function deleteIdeaCard() {
 }
 
 function clearInputs() {
-  $('#title-input').val('');
-  $('#body-input').val('');
+  $('.title-input').val('');
+  $('.task-input').val('');
 }
 
 function upvoteQuality() {
   var qualityArray = ['swill', 'plausible', 'genius'];
-  var currentQuality = $(this).siblings('.quality-option').text();
+  var currentQuality = $(this).siblings('.imp-val').text();
   var currentIndex = qualityArray.indexOf(currentQuality);
 
   if(currentIndex < 2) {
     currentIndex++;
-    currentQuality = $(this).siblings('.quality-option').text(qualityArray[currentIndex]);
+    currentQuality = $(this).siblings('.imp-val').text(qualityArray[currentIndex]);
   }
 
   var cardId = parseInt($(this).closest('article').attr('id'));
@@ -107,12 +107,12 @@ function upvoteQuality() {
 
 function downvoteQuality() {
   var qualityArray = ['swill', 'plausible', 'genius'];
-  var currentQuality = $(this).siblings('.quality-option').text();
+  var currentQuality = $(this).siblings('.imp-val').text();
   var currentIndex = qualityArray.indexOf(currentQuality);
 
   if(currentIndex > 0){
     currentIndex--;
-    currentQuality = $(this).siblings('.quality-option').text(qualityArray[currentIndex]);
+    currentQuality = $(this).siblings('.imp-val').text(qualityArray[currentIndex]);
   }
   
   var cardId = parseInt($(this).closest('article').attr('id'));
@@ -144,12 +144,12 @@ function changeIdeaBody() {
 }
 
 function clearAllCards() {
-  $('#idea-card-storage').text('');
+  $('.crd-ctnr').text('');
 }
 
 function searchString() {
   var cardObjectsArray = findExistingCards();
-  var userSearchInput = $('#search-bar-input').val().toLowerCase();
+  var userSearchInput = $('.srch-input').val().toLowerCase();
   var filteredCards = cardObjectsArray.filter(function (object){
     var lowercaseObjectBody = object['body'].toLowerCase();
     var lowercaseObjectTitle = object['title'].toLowerCase();
@@ -163,10 +163,10 @@ function searchString() {
 function updateTitle(event) {
   if (13 == event.keyCode) {
     event.preventDefault();
-    $('.card-title').blur();
+    $('.crd-title').blur();
     var cardId = parseInt($(this).closest('article').attr('id'));
     var cardObject = getObjectFromStorage(cardId);
-    cardObject.title = $(this).closest('.card-title').text();
+    cardObject.title = $(this).closest('.crd-title').text();
     sendUpdatesToLocalStorage(cardObject);
   }
 }
@@ -174,10 +174,10 @@ function updateTitle(event) {
 function updateBody(event) {
   if (13 == event.keyCode) {
     event.preventDefault();
-    $('.card-body').blur();
+    $('.crd-task').blur();
     var cardId = parseInt($(this).closest('article').attr('id'));
     var cardObject = getObjectFromStorage(cardId);
-    cardObject.body = $(this).closest('.card-body').text();
+    cardObject.body = $(this).closest('.crd-task').text();
     sendUpdatesToLocalStorage(cardObject);
   }
 }
