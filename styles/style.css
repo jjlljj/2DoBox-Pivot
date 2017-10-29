@@ -13,6 +13,7 @@ body {
   border-color: #00A79D;
   border-radius: 0px;
   color: #FFFFFF;
+  cursor: pointer;
   font-size: 20px;
   width: 50%;
 }
@@ -100,6 +101,7 @@ p {
 button {
   background-color: white;
   border: none;
+  cursor: pointer;
   display: inline-block;
   height: 30px;
   margin-right: 20px;
