@@ -33,10 +33,14 @@ body {
   height: 40px;
   margin: 10px;
   outline: none;
-  width: 24%;
+  width: 23.7%;
 }
 
+<<<<<<< HEAD
 .delete-all-btn {
+=======
+.del-all-btn {
+>>>>>>> master
   background-color: #00A79D;  
   border-color: #00A79D;
   border-radius: 0px;
@@ -47,10 +51,12 @@ body {
   height: 40px;
   margin: 10px;
   outline: none;
-  width: 24%;
+  width: 23.7%;
 }
 
-.save-btn: hover {
+.show-all-btn:hover,
+.del-all-btn:hover,
+.save-btn:hover {
   background-color: #045E55;
 }
 
@@ -93,8 +99,9 @@ input::placeholder {
 }
 
 .srch-wrap {
-  padding-top: 20px;
+  padding-top: 10px;
   text-align: center;
+  margin-left: 
 }
   
 /*IDEA CARDS*/
@@ -200,10 +207,13 @@ h3 .imp-val {
     left: 20%;
   }
 
-  article,
-  input,
-  .save-btn {
-    width: 60%;
+  .save-btn,
+  .src-wrap,
+  .src-input,
+  .save-btn,
+  .show-all-btn,
+  .del-all-btn {
+    width: 50%;
   }
 }
 
@@ -221,10 +231,12 @@ h3 .imp-val {
     margin-bottom: 10px;
   }
 
-  article,
-  input,
-  .save-btn {
-    width: 85%;
+  /*.src-wrap,
+  .src-input,
+  .save-btn,
+  .show-all-btn,
+  .del-all-btn {
+    width: 85%;*/
   }
 
   button {
