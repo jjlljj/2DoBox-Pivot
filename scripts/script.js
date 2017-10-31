@@ -1,49 +1,32 @@
 $(document).ready(populateExistingCards(findExistingCards()));
-var $crdCtnr = $('.crd-ctnr');
-
-$('.save-btn').on('click', newCrd);
-
-$crdCtnr.on('click', '.del-btn', delCrd);
-
-$crdCtnr.on('click', '.up-btn', function(){
-  changeImp(this, 'more')
-});
-
-$crdCtnr.on('click', '.down-btn', function() {
-  changeImp(this, 'less')
-});
-
-$crdCtnr.on('blur', '.crd-title', function() {
-  editCrd(this, 'title')
-});
-
-$crdCtnr.on('blur', '.crd-task', function() {
-  editCrd(this, 'body')
-});
-
-$crdCtnr.on('keypress', '.crd-title', unFocus);
-
-$crdCtnr.on('keypress', '.crd-task', unFocus);
-
+var $cardCtnr = $('.card-ctnr');
+$('.save-btn').on('click', newCard);
+$cardCtnr.on('click', '.del-btn', delCard);
+$cardCtnr.on('click', '.up-btn', function() {changeImp(this, 'more')});
+$cardCtnr.on('click', '.down-btn', function() {changeImp(this, 'less')});
+$cardCtnr.on('blur', '.card-title', function() {editCard(this, 'title')});
+$cardCtnr.on('blur', '.card-task', function() {editCard(this, 'body')});
+$cardCtnr.on('keypress', '.card-title', unFocus);
+$cardCtnr.on('keypress', '.card-task', unFocus);
 $('.srch-input').on('keyup', searchString);
 
-function ToDoCrd(id, title, body, quality) {
+function ToDoCard(id, title, body, quality) {
   this.id = id;
   this.title = title;
   this.body = body;
-  this.quality = 'swill';
+  this.quality = 'normal';
 }
 
-function newCrd() {
+function newCard() {
   event.preventDefault();
-  var newCrd = new ToDoCrd(Date.now(), $('.title-input').val(), $('.task-input').val());
-  toSto(newCrd);
-  prependCrd(newCrd);
+  var newCard = new ToDoCard(Date.now(), $('.title-input').val(), $('.task-input').val());
+  toSto(newCard);
+  prependCard(newCard);
   clrInp();
 }
 
-function toSto(crd) {
-  localStorage.setItem(crd.id, JSON.stringify(crd));
+function toSto(card) {
+  localStorage.setItem(card.id, JSON.stringify(card));
 }
 
 function fromSto(id) {
@@ -51,12 +34,12 @@ function fromSto(id) {
   return $obj;
 }
 
-function getId(crd) {
-  var crdId = $(crd).closest('article').attr('id');
-  return crdId
+function getId(card) {
+  var cardId = $(card).closest('article').attr('id');
+  return cardId
 }
 
-function delCrd() {
+function delCard() {
   $(this).closest('article').remove();
   localStorage.removeItem(getId(this));
 }
@@ -65,19 +48,19 @@ function clrInp() {
   $('.title-input, .task-input, .srch-input').val('');
 }
 
-function changeImp(crd, vt) {
-  var qualityArray = ['swill', 'plausible', 'genius'];
-  var $thisCrd = fromSto(getId(crd));
-  var idx = qualityArray.indexOf($thisCrd.quality);
+function changeImp(card, vt) {
+  var qualityArray = ['none', 'low', 'normal', 'high', 'critical'];
+  var $thisCard = fromSto(getId(card));
+  var idx = qualityArray.indexOf($thisCard.quality);
   if (idx > 0 && vt === 'less') {
     idx--;
-    $thisCrd.quality = qualityArray[idx];
+    $thisCard.quality = qualityArray[idx];
   } else if (idx < (qualityArray.length-1) && vt === 'more') {
     idx++;
-    $thisCrd.quality = qualityArray[idx];
+    $thisCard.quality = qualityArray[idx];
   }
-  $(`#${$thisCrd.id} .imp-val`).text($thisCrd.quality)
-  toSto($thisCrd);
+  $(`#${$thisCard.id} .imp-val`).text($thisCard.quality)
+  toSto($thisCard);
 }
 
 function unFocus(event) {
@@ -87,22 +70,21 @@ function unFocus(event) {
   }
 }
 
-function editCrd(crd, edit) {
-  var text = $(crd).text();
-  var $thisCrd = fromSto(getId(crd));
+function editCard(card, edit) {
+  var text = $(card).text();
+  var $thisCard = fromSto(getId(card));
   if (edit === 'title'){
-    $thisCrd.title = text;
+    $thisCard.title = text;
   } else if (edit === 'body'){
-    $thisCrd.body = text;
+    $thisCard.body = text;
   }
-  toSto($thisCrd);
+  toSto($thisCard);
 }
 
-//don't need dual loops of populateExisting && findExisting.. also rename
 function populateExistingCards(keyValues) {
   for (var i = 0; i < keyValues.length; i++) {
-    var thisCrd = fromSto(keyValues[i].id);
-    prependCrd(thisCrd)
+    var thisCard = fromSto(keyValues[i].id);
+    prependCard(thisCard)
   }
 }
 
@@ -115,39 +97,33 @@ function findExistingCards() {
   return keyValues;
 }
 
-// this can be shorterrr
 function searchString() {
-  var cardObjectsArray = findExistingCards();
+  var allCards = findExistingCards();
   var srchInp = $('.srch-input').val().toLowerCase();
-
-  var filteredCards = cardObjectsArray.filter(function (object){
-    var lowercaseObjectBody = object['body'].toLowerCase();
-    var lowercaseObjectTitle = object['title'].toLowerCase();
-    return lowercaseObjectBody.match(srchInp) || lowercaseObjectTitle.match(srchInp);
+  var filteredCards = allCards.filter(function (obj){
+    return obj['body'].toLowerCase().match(srchInp) || obj['title'].toLowerCase().match(srchInp);
     }
   ) 
   clearAllCards();
   populateExistingCards(filteredCards);
 }
 
-
-//is this even being called???
 function clearAllCards() {
-  $('.crd-ctnr').text('');
+  $('.card-ctnr').text('');
 }
 
-function  prependCrd(crd) {
-  $('.crd-ctnr').prepend(
-    `<article class="2do-crd" id="${crd.id}">
-      <header class="crd-hdr">
-        <h2 class="crd-title" contenteditable="true">${crd.title}</h2> 
+function  prependCard(card) {
+  $('.card-ctnr').prepend(
+    `<article class="2do-card" id="${card.id}">
+      <header class="card-hdr">
+        <h2 class="card-title" contenteditable="true">${card.title}</h2> 
         <button class="del-btn" name="delete button"></button>
       </header>
-      <p class="crd-task" contenteditable="true">${crd.body}</p>
-      <footer class="crd-ftr">
+      <p class="card-task" contenteditable="true">${card.body}</p>
+      <footer class="card-ftr">
         <button class="up-btn" name="more important"></button>
         <button class="down-btn" name="less important"></button>
-        <h3 class="imp-title">Importance: <span class="imp-val">${crd.quality}</span></h3>
+        <h3 class="imp-title">Importance: <span class="imp-val">${card.quality}</span></h3>
       </footer>
     </article>`
   );
