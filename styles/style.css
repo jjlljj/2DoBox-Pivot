@@ -22,7 +22,7 @@ body {
   width: 50%;
 }
 
-.show-all {
+.show-all-btn {
   background-color: #00A79D;
   border-color: #00A79D;
   border-radius: 0px;
@@ -36,7 +36,7 @@ body {
   width: 24%;
 }
 
-.delete-all {
+.delete-all-btn {
   background-color: #00A79D;  
   border-color: #00A79D;
   border-radius: 0px;

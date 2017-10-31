@@ -1,7 +1,7 @@
 $(document).ready(populateExistingCards(findExistingCards()));
 $('.save-btn').on('click', newCard);
-$('.title-input').on('keyup', disableSubmit)
-$('.task-input').on('keyup', disableSubmit)
+$('.title-input').on('keyup', disableSubmit);
+$('.task-input').on('keyup', disableSubmit);
 $('.card-ctnr').on('click', '.del-btn', delCard);
 $('.card-ctnr').on('click', '.up-btn', function() {changeImp(this, 'more')});
 $('.card-ctnr').on('click', '.down-btn', function() {changeImp(this, 'less')});
@@ -10,6 +10,7 @@ $('.card-ctnr').on('blur', '.card-task', function() {editCard(this, 'task')});
 $('.card-ctnr').on('keypress', '.card-title', unFocus);
 $('.card-ctnr').on('keypress', '.card-task', unFocus);
 $('.srch-input').on('keyup', filterString);
+$('.show-all-btn').on('click', displayAll)
 
 function ToDoCard(id, title, task, importance) {
   this.id = id;
@@ -90,8 +91,8 @@ function editCard(card, edit) {
   toSto($thisCard);
 }
 
-function populateExistingCards(keyValues, showAll) {
-  var displayNum = keyValues.length < 10 ? keyValues.length : 10;
+function populateExistingCards(keyValues, displayAll) {
+  displayNum = keyValues.length < 10 ? keyValues.length : 10;
   for (var i = keyValues.length - displayNum; i < keyValues.length; i++) {
     var thisCard = fromSto(keyValues[i].id);
     prependCard(thisCard)
@@ -106,6 +107,17 @@ function findExistingCards() {
   }
   return keyValues;
 }
+
+function displayAll() {
+  console.log('click')
+  var allCards = findExistingCards();
+  clearAllCards();
+  console.log(allCards)
+  for (var i = 0; i < allCards.length; i++) {
+    var thisCard = fromSto(allCards[i].id);
+    prependCard(thisCard)
+  }
+} 
 
 function filterString() {
   var allCards = findExistingCards();
