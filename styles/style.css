@@ -14,24 +14,56 @@ body {
   border-radius: 0px;
   color: #FFFFFF;
   cursor: pointer;
+  display: inline-block;
   font-size: 20px;
+  height: 40px;
+  margin: 10px;
+  outline: none;
   width: 50%;
 }
 
+.show-all {
+  background-color: #00A79D;
+  border-color: #00A79D;
+  border-radius: 0px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  height: 40px;
+  margin: 10px;
+  outline: none;
+  width: 24%;
+}
 
-.save-btn:hover {
+.delete-all {
+  background-color: #00A79D;  
+  border-color: #00A79D;
+  border-radius: 0px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  height: 40px;
+  margin: 10px;
+  outline: none;
+  width: 24%;
+}
+
+.save-btn: hover {
   background-color: #045E55;
 }
 
-.save-btn,
-input {
-  display: inline-block;
-  height: 40px;
-  margin: 10px;
+.box {
+  color: #00A79D;
+  font-family: 'Roboto Slab', serif;
+  font-size: 6vw;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
-h1 {
-  color: #00A79D;
+.to-do {
+  color: #939598;
   font-family: 'Roboto Slab', serif;
   font-size: 6vw;
   font-weight: 700;
@@ -40,7 +72,10 @@ h1 {
 
 input {
   border: 1px solid #939598;
+  display: inline-block;
   font-size: 20px;
+  height: 40px;
+  margin: 10px;
   outline: none;
   padding: 0px 8px;
   width: 50%;
