@@ -112,6 +112,7 @@ button {
 .del-btn {
   background-image: url('../images/delete.svg');
   position: absolute;
+  outline: none;
   right: 0px;
   top: 18px;
 }
@@ -122,6 +123,7 @@ button {
 
 .up-btn {
   background-image: url('../images/upvote.svg');
+  outline: none;
 }
 
 .up-btn:hover {
@@ -130,6 +132,7 @@ button {
 
 .down-btn {
   background-image: url('../images/downvote.svg');
+  outline: none;
 }
 
 .down-btn:hover {
