@@ -22,6 +22,10 @@ body {
   width: 50%;
 }
 
+.card-ftr {
+
+}
+
 .show-all-btn {
   background-color: #00A79D;
   border-color: #00A79D;
@@ -50,9 +54,30 @@ body {
   width: 23.7%;
 }
 
+.completed-btn {
+  background-color: #00A79D;  
+  border-color: #00A79D;
+  border-radius: 0px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  height: 40px;
+  margin: 10px;
+  outline: none;
+  width: 25%;
+  left: 34.5%;
+}
+
+.completed::disabled {
+  background-color: ;
+}
+
+
 .show-all-btn:hover,
 .del-all-btn:hover,
-.save-btn:hover {
+.save-btn:hover,
+.completed:hover  {
   background-color: #045E55;
 }
 
@@ -211,6 +236,8 @@ h3 .imp-val {
   .del-all-btn {
     width: 50%;
   }
+
+  /*you are working on making the srch-wrap not slide to the left*/
 }
 
 @media screen and (max-width: 415px) {
@@ -227,14 +254,6 @@ h3 .imp-val {
     margin-bottom: 10px;
   }
 
-  /*.src-wrap,
-  .src-input,
-  .save-btn,
-  .show-all-btn,
-  .del-all-btn {
-    width: 85%;*/
-  }
-
   button {
     margin-right: 7px;
   }
@@ -245,6 +264,15 @@ h3 .imp-val {
 
   h3 {
     line-height: 10px;
+  }
+
+  .save-btn,
+  .src-wrap,
+  .src-input,
+  .save-btn,
+  .show-all-btn,
+  .del-all-btn {
+    width: 27%;
   }
 
 }
