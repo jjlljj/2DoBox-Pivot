@@ -1,7 +1,7 @@
 $(document).ready(populateExistingCards(findExistingCards()));
 $('.save-btn').on('click', newCard);
-$('.title-input').on('keyup', disableSubmit)
-$('.task-input').on('keyup', disableSubmit)
+$('.title-input').on('keyup', disableSubmit);
+$('.task-input').on('keyup', disableSubmit);
 $('.card-ctnr').on('click', '.del-btn', delCard);
 $('.card-ctnr').on('click', '.up-btn', function() {changeImp(this, 'more')});
 $('.card-ctnr').on('click', '.down-btn', function() {changeImp(this, 'less')});
@@ -9,8 +9,10 @@ $('.card-ctnr').on('blur', '.card-title', function() {editCard(this, 'title')});
 $('.card-ctnr').on('blur', '.card-task', function() {editCard(this, 'task')});
 $('.card-ctnr').on('keypress', '.card-title', unFocus);
 $('.card-ctnr').on('keypress', '.card-task', unFocus);
-$('.srch-input').on('keyup', filterString);
-$('.card-ctnr').on('click', '.completed-btn', )
+$('.search-input').on('keyup', filterString);
+$('.show-all-btn').on('click', displayAll);
+$('.del-all-btn').on('click');
+$('.imp-filter-wrap').on('click', '.filter-btn', filterImp)
 
 function ToDoCard(id, title, task, importance) {
   this.id = id;
@@ -55,7 +57,7 @@ function delCard() {
 }
 
 function clrInp() {
-  $('.title-input, .task-input, .srch-input').val('');
+  $('.title-input, .task-input, .search-input').val('');
 }
 
 function changeImp(card, vt) {
@@ -91,8 +93,9 @@ function editCard(card, edit) {
   toSto($thisCard);
 }
 
-function populateExistingCards(keyValues, showAll) {
-  var displayNum = keyValues.length < 10 ? keyValues.length : 10;
+function populateExistingCards(keyValues) {
+  clearAllCards();
+  displayNum = keyValues.length < 10 ? keyValues.length : 10;
   for (var i = keyValues.length - displayNum; i < keyValues.length; i++) {
     var thisCard = fromSto(keyValues[i].id);
     prependCard(thisCard)
@@ -108,14 +111,32 @@ function findExistingCards() {
   return keyValues;
 }
 
+function displayAll() {
+  var allCards = findExistingCards();
+  clearAllCards();
+  for (var i = 0; i < allCards.length; i++) {
+    var thisCard = fromSto(allCards[i].id);
+    prependCard(thisCard)
+  }
+} 
+
 function filterString() {
   var allCards = findExistingCards();
-  var srchInp = $('.srch-input').val().toLowerCase();
+  var srchInp = $('.search-input').val().toLowerCase();
   var filteredCards = allCards.filter(function (obj){
     return obj['task'].toLowerCase().match(srchInp) || obj['title'].toLowerCase().match(srchInp);
     }
   ) 
-  clearAllCards();
+  populateExistingCards(filteredCards);
+}
+
+function filterImp() {
+  var allCards = findExistingCards();
+  var filterBy = $(this).text();
+  var filteredCards = allCards.filter(function (obj){
+    return obj['importance'].match(filterBy);
+    }
+  ) 
   populateExistingCards(filteredCards);
 }
 
