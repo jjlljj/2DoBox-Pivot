@@ -1,4 +1,4 @@
-$(document).ready(populateExistingCards(findExistingCards()));
+$(document).ready(renderOnLoad);
 $('.save-btn').on('click', newCard);
 $('.title-input').on('keyup', disableSubmit);
 $('.task-input').on('keyup', disableSubmit);
@@ -12,22 +12,23 @@ $('.card-ctnr').on('keypress', '.card-task', unFocus);
 $('.search-input').on('keyup', filterString);
 $('.show-all-btn').on('click', displayAll);
 $('.del-all-btn').on('click');
-$('.imp-filter-wrap').on('click', '.filter-btn', filterImp)
+$('.imp-filter-wrap').on('click', '.filter-btn', filterImp);
 
 function ToDoCard(id, title, task, importance) {
   this.id = id;
   this.title = title;
   this.task = task;
   this.importance = 'normal';
-}
+  this.complete = false;
+};
 
 function disableSubmit() {
   if ($('.title-input').val() && $('.task-input').val()) {
     $('.save-btn').prop('disabled', false);
   } else {
     $('.save-btn').prop('disabled', true);
-  }
-}
+  };
+};
 
 function newCard() {
   event.preventDefault();
@@ -35,30 +36,30 @@ function newCard() {
   toSto(newCard);
   prependCard(newCard);
   clrInp();
-}
+};
 
 function toSto(card) {
   localStorage.setItem(card.id, JSON.stringify(card));
-}
+};
 
 function fromSto(id) {
   var $obj = JSON.parse(localStorage.getItem(id));
   return $obj;
-}
+};
 
 function getId(card) {
   var cardId = $(card).closest('article').attr('id');
-  return cardId
-}
+  return cardId;
+};
 
 function delCard() {
   $(this).closest('article').remove();
   localStorage.removeItem(getId(this));
-}
+};
 
 function clrInp() {
   $('.title-input, .task-input, .search-input').val('');
-}
+};
 
 function changeImp(card, vt) {
   var impArray = ['none', 'low', 'normal', 'high', 'critical'];
@@ -70,17 +71,17 @@ function changeImp(card, vt) {
   } else if (idx < (impArray.length-1) && vt === 'more') {
     idx++;
     $thisCard.importance = impArray[idx];
-  }
-  $(`#${$thisCard.id} .imp-val`).text($thisCard.importance)
+  };
+  $(`#${$thisCard.id} .imp-val`).text($thisCard.importance);
   toSto($thisCard);
-}
+};
 
 function unFocus(event) {
   if (13 == event.keyCode) {
     event.preventDefault();
-    $(this).blur()
-  }
-}
+    $(this).blur();
+  };
+};
 
 function editCard(card, edit) {
   var text = $(card).text();
@@ -89,60 +90,70 @@ function editCard(card, edit) {
     $thisCard.title = text;
   } else if (edit === 'task'){
     $thisCard.task = text;
-  }
+  };
   toSto($thisCard);
-}
+};
 
 function populateExistingCards(keyValues) {
   clearAllCards();
   displayNum = keyValues.length < 10 ? keyValues.length : 10;
   for (var i = keyValues.length - displayNum; i < keyValues.length; i++) {
     var thisCard = fromSto(keyValues[i].id);
-    prependCard(thisCard)
-  }
-}
+    prependCard(thisCard);
+  };
+};
 
-function findExistingCards() {
-  var keyValues = [];
-  var keys = Object.keys(localStorage);
-  for (var i = 0; i < keys.length; i++) {
-    keyValues.push(JSON.parse(localStorage.getItem(keys[i])));
-  }
-  return keyValues;
-}
+function createCardsArray() {
+  var objArray = [];
+  var id = Object.keys(localStorage);
+  for (var i = 0; i < id.length; i++) {
+    objArray.push(JSON.parse(localStorage.getItem(id[i])));
+  };
+  return objArray;
+};
 
 function displayAll() {
-  var allCards = findExistingCards();
+  var allCards = createCardsArray();
   clearAllCards();
   for (var i = 0; i < allCards.length; i++) {
     var thisCard = fromSto(allCards[i].id);
-    prependCard(thisCard)
-  }
-} 
+    prependCard(thisCard);
+  };
+};
 
-function filterString() {
-  var allCards = findExistingCards();
-  var srchInp = $('.search-input').val().toLowerCase();
-  var filteredCards = allCards.filter(function (obj){
-    return obj['task'].toLowerCase().match(srchInp) || obj['title'].toLowerCase().match(srchInp);
-    }
-  ) 
-  populateExistingCards(filteredCards);
-}
+function renderOnLoad() {
+  var allCards = filterComplete(createCardsArray());
+  populateExistingCards(allCards);
+};
+
+function filterComplete(allCards) {
+  var filteredComplete = allCards.filter(function (obj){
+    return !obj['complete'];
+  });
+  return filteredComplete;
+};
 
 function filterImp() {
-  var allCards = findExistingCards();
+  var allCards = filterComplete(createCardsArray());
   var filterBy = $(this).text();
   var filteredCards = allCards.filter(function (obj){
     return obj['importance'].match(filterBy);
-    }
-  ) 
+  }); 
   populateExistingCards(filteredCards);
-}
+};
+
+function filterString() {
+  var allCards = filterComplete(createCardsArray());
+  var srchInp = $('.search-input').val().toLowerCase();
+  var filteredCards = allCards.filter(function (obj){
+    return obj['task'].toLowerCase().match(srchInp) || obj['title'].toLowerCase().match(srchInp);
+  });
+  populateExistingCards(filteredCards);
+};
 
 function clearAllCards() {
   $('.card-ctnr').text('');
-}
+};
 
 function  prependCard(card) {
   $('.card-ctnr').prepend(
@@ -160,4 +171,4 @@ function  prependCard(card) {
       </footer>
     </article>`
   );
-}
+};
