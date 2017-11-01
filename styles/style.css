@@ -140,7 +140,7 @@ p {
 
 /*BUTTONS*/
 button {
-  background-color: white;
+  background-color: transparent;
   border: none;
   cursor: pointer;
   display: inline-block;
@@ -191,6 +191,11 @@ button {
   background-image: url('../images/upvote-hover.svg');
 } 
 
+.gray-out .up-btn:hover {
+  background-image: url('../images/upvote.svg');
+  cursor: default;
+}
+
 .down-btn {
   background-image: url('../images/downvote.svg');
   outline: none;
@@ -198,6 +203,11 @@ button {
 
 .down-btn:hover {
   background-image: url('../images/downvote-hover.svg');
+}
+
+.gray-out .down-btn:hover {
+  background-image: url('../images/downvote.svg');
+  cursor: default;
 }
 
 .completed-btn {
