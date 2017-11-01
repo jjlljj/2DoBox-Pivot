@@ -59,9 +59,8 @@ function delCard() {
 };
 
 function markComplete() {
-  console.log('click')
   var $thisCard = fromSto(getId(this));
-  disableComplete($thisCard)
+  disableComplete($thisCard);
   $thisCard.complete = true;
   toSto($thisCard);
 }

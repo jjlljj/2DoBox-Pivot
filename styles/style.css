@@ -138,6 +138,14 @@ p {
   outline: none;
 }
 
+.gray-out {
+  opacity: .8;
+  color: #7d7f82;
+  background-color: #f2f2f2;
+  box-shadow: 1px 0px 4px #f2f2f2;
+
+}
+
 /*BUTTONS*/
 button {
   background-color: transparent;
@@ -229,6 +237,12 @@ button {
 
 .completed-btn:hover {
   background-color:#EF4136;
+}
+
+.gray-out .completed-btn {
+  opacity: .8;
+  background-color: #6D6E71;
+  cursor: default;
 }
 
 /*QUALITY OPTION*/
