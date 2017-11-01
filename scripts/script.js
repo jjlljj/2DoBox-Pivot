@@ -156,6 +156,7 @@ function  prependCard(card) {
         <button class="up-btn" name="more important"></button>
         <button class="down-btn" name="less important"></button>
         <h3 class="imp-title">Importance: <span class="imp-val">${card.importance}</span></h3>
+        <button class="completed-btn">Completed Task</button>
       </footer>
     </article>`
   );
