@@ -22,6 +22,10 @@ body {
   width: 50%;
 }
 
+.card-ftr {
+
+}
+
 .show-all-btn {
   background-color: #00A79D;
   border-color: #00A79D;
@@ -49,12 +53,6 @@ body {
   margin: 10px;
   outline: none;
   width: 23.7%;
-}
-
-.show-all-btn:hover,
-.del-all-btn:hover,
-.save-btn:hover {
-  background-color: #045E55;
 }
 
 .box {
@@ -104,15 +102,6 @@ input::placeholder {
 .imp-filter-wrap {
   border: none;
 }
-
-.filter-btn {
-  background-color: red;
-  color: #FFFFFF;
-  border-radius: 3px;
-  height: 25px;
-  outline:none;
-  width: 50px;
-}
   
 /*IDEA CARDS*/
 article {
@@ -149,7 +138,7 @@ p {
   outline: none;
 }
 
-/*SVG BUTTONS*/
+/*BUTTONS*/
 button {
   background-color: white;
   border: none;
@@ -161,11 +150,31 @@ button {
   width: 30px;
 }
 
+.filter-btn {
+  background-color: #FBB040;
+  color: #FFFFFF;
+  border-radius: 3px;
+  height: 25px;
+  outline:none;
+  width: 50px;
+}
+
+.filter-btn:hover {
+  background-color: #FFA700;
+}
+
+.show-all-btn:hover,
+.del-all-btn:hover,
+.save-btn:hover,
+.completed:hover  {
+  background-color: #045E55;
+}
+
 .del-btn {
   background-image: url('../images/delete.svg');
   position: absolute;
   outline: none;
-  right: 0px;
+  right: -20px;
   top: 18px;
 }
 
@@ -191,6 +200,26 @@ button {
   background-image: url('../images/downvote-hover.svg');
 }
 
+.completed-btn {
+  background-color: #FB3640;  
+  border-radius: 0px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  height: 40px;
+  margin: 10px;
+  outline: none;
+  width: 200px;
+  position: absolute;
+  right: -9px;
+  bottom: 14px;
+  border-radius: 3px;
+}
+
+.completed-btn:hover {
+  background-color:#EF4136;
+}
 
 /*QUALITY OPTION*/
 h3 {
@@ -225,6 +254,8 @@ h3 .imp-val {
   .del-all-btn {
     width: 50%;
   }
+
+  /*you are working on making the srch-wrap not slide to the left*/
 }
 
 @media screen and (max-width: 415px) {
@@ -241,14 +272,6 @@ h3 .imp-val {
     margin-bottom: 10px;
   }
 
-  /*.src-wrap,
-  .src-input,
-  .save-btn,
-  .show-all-btn,
-  .del-all-btn {
-    width: 85%;*/
-  }
-
   button {
     margin-right: 7px;
   }
@@ -259,6 +282,15 @@ h3 .imp-val {
 
   h3 {
     line-height: 10px;
+  }
+
+  .save-btn,
+  .src-wrap,
+  .src-input,
+  .save-btn,
+  .show-all-btn,
+  .del-all-btn {
+    width: 27%;
   }
 
 }
