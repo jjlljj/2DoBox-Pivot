@@ -13,7 +13,7 @@ A new 2Do card will include(id, title, task, and importance)
 * The id should be a unique identifier.
 * title and task are free-form strings.
 * quality should be one of the follow: critical, high, normal, low, none.
-By default, the task’s "importance" should default to the middle setting of normal.
+By default, the task’s "importance" should default to the middle setting of "normal."
 
 
 ### Viewing Tasks
@@ -45,14 +45,13 @@ When viewing the task list:
 * The page should not reload when an task is deleted.
 * The task should be removed from localStorage. It should not re-appear on next page load.
 
-### Changing the quality of an task
+### Changing the Importance of a task
 
-As we said above, tasks should start out as “swill.” In order to change the recorded quality of an task, the user will interact with it from the task list.
+As we said above, tasks should start out as “Normal.” In order to change the recorded importance of a task, the user will interact with it from the task list.
 
 * Each task in the list should include an “upvote” and “downvote” button.
-* Clicking upvote on the task should increase its quality one notch (“swill” → “plausible”, “plausible” → “genius”).
-* Clicking downvote on the task should decrease its quality one notch (“genius” → “plausible”, “plausible” → “swill”).
-* Incrementing a “genius” task or decrementing a “swill” task should have no effect.
+* Clicking upvote on the task should increase it's importance one notch.
+* Clicking downvote on the task should decrease its importance one notch.
 
 ### Editing an existing task
 
@@ -64,9 +63,9 @@ As we said above, tasks should start out as “swill.” In order to change the 
 
 We’d like our users to be able to easily find specific tasks they already created, so let’s provide them with a filtering interface on the task list.
 
-* At the top of the task list, include a text field labeled “Search”.
+* At the top of the task list, include a text field labeled “filter”.
 * As a user types in the search box, the list of tasks should filter in real time to only display tasks whose title or body include the user’s text. The page should not reload.
-* Clearing the search box should restore all the tasks to the list.
+* Clearing the filter box should restore all the tasks to the list.
 
 ## Layout comps: 
 
