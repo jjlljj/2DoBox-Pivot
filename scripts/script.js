@@ -7,74 +7,13 @@ $('.card-ctnr').on('click', '.up-btn', function() {changeImp(this, 'more')});
 $('.card-ctnr').on('click', '.down-btn', function() {changeImp(this, 'less')});
 $('.card-ctnr').on('blur', '.card-title', function() {editCard(this, 'title')});
 $('.card-ctnr').on('blur', '.card-task', function() {editCard(this, 'task')});
+$('.card-ctnr').on('click', '.completed-btn', markComplete);
 $('.card-ctnr').on('keypress', '.card-title', unFocus);
 $('.card-ctnr').on('keypress', '.card-task', unFocus);
 $('.search-input').on('keyup', filterString);
 $('.show-all-btn').on('click', displayAll);
 $('.del-all-btn').on('click');
 $('.imp-filter-wrap').on('click', '.filter-btn', filterImp);
-$('.card-ctnr').on('click', '.completed-btn', markComplete)
-
-function ToDoCard(id, title, task, importance) {
-  this.id = id;
-  this.title = title;
-  this.task = task;
-  this.importance = 'normal';
-  this.complete = false;
-};
-
-function disableSubmit() {
-  if ($('.title-input').val() && $('.task-input').val()) {
-    $('.save-btn').prop('disabled', false);
-  } else {
-    $('.save-btn').prop('disabled', true);
-  };
-};
-
-function newCard() {
-  event.preventDefault();
-  var newCard = new ToDoCard(Date.now(), $('.title-input').val(), $('.task-input').val());
-  toSto(newCard);
-  prependCard(newCard);
-  clrInp();
-};
-
-function toSto(card) {
-  localStorage.setItem(card.id, JSON.stringify(card));
-};
-
-function fromSto(id) {
-  var $obj = JSON.parse(localStorage.getItem(id));
-  return $obj;
-};
-
-function getId(card) {
-  var cardId = $(card).closest('.to-do-card').attr('id');
-  return cardId;
-};
-
-function delCard() {
-  $(this).closest('.to-do-card').remove();
-  localStorage.removeItem(getId(this));
-};
-
-function markComplete() {
-  var $thisCard = fromSto(getId(this));
-  disableComplete($thisCard);
-  $thisCard.complete = true;
-  toSto($thisCard);
-}
-
-function disableComplete(card) {
-  $(`#${card.id}`).addClass('gray-out');
-  $(`#${card.id} .up-btn, #${card.id} .down-btn`).prop('disabled', true);
-  $(`#${card.id} .delete-btn`).prop('disabled', true);
-  $(`#${card.id} .card-task, #${card.id} .card-title`).prop('contenteditable', false);
-}
-
-function clrInp() {
-  $('.title-input, .task-input, .search-input').val('');
-};
 
 function changeImp(card, vt) {
   var impArray = ['none', 'low', 'normal', 'high', 'critical'];
@@ -91,31 +30,12 @@ function changeImp(card, vt) {
   toSto($thisCard);
 };
 
-function unFocus(event) {
-  if (13 == event.keyCode) {
-    event.preventDefault();
-    $(this).blur();
-  };
+function clearAllCards() {
+  $('.card-ctnr').text('');
 };
 
-function editCard(card, edit) {
-  var text = $(card).text();
-  var $thisCard = fromSto(getId(card));
-  if (edit === 'title'){
-    $thisCard.title = text;
-  } else if (edit === 'task'){
-    $thisCard.task = text;
-  };
-  toSto($thisCard);
-};
-
-function populateExistingCards(keyValues) {
-  clearAllCards();
-  displayNum = keyValues.length < 10 ? keyValues.length : 10;
-  for (var i = keyValues.length - displayNum; i < keyValues.length; i++) {
-    var thisCard = fromSto(keyValues[i].id);
-    prependCard(thisCard);
-  };
+function clearInp() {
+  $('.title-input, .task-input, .search-input').val('');
 };
 
 function createCardsArray() {
@@ -125,6 +45,26 @@ function createCardsArray() {
     objArray.push(JSON.parse(localStorage.getItem(id[i])));
   };
   return objArray;
+};
+
+function delCard() {
+  $(this).closest('.to-do-card').remove();
+  localStorage.removeItem(getId(this));
+};
+
+function disableComplete(card) {
+  $(`#${card.id}`).addClass('gray-out');
+  $(`#${card.id} .up-btn, #${card.id} .down-btn`).prop('disabled', true);
+  $(`#${card.id} .delete-btn`).prop('disabled', true);
+  $(`#${card.id} .card-task, #${card.id} .card-title`).prop('contenteditable', false);
+};
+
+function disableSubmit() {
+  if ($('.title-input').val() && $('.task-input').val()) {
+    $('.save-btn').prop('disabled', false);
+  } else {
+    $('.save-btn').prop('disabled', true);
+  };
 };
 
 function displayAll() {
@@ -139,13 +79,19 @@ function displayAll() {
   };
 };
 
-function renderOnLoad() {
-  var allCards = filterComplete(createCardsArray());
-  populateExistingCards(allCards);
+function editCard(card, edit) {
+  var text = $(card).text();
+  var $thisCard = fromSto(getId(card));
+  if (edit === 'title'){
+    $thisCard.title = text;
+  } else if (edit === 'task'){
+    $thisCard.task = text;
+  };
+  toSto($thisCard);
 };
 
 function filterComplete(allCards) {
-  var filteredComplete = allCards.filter(function (obj){
+  var filteredComplete = allCards.filter(function(obj) {
     return !obj['complete'];
   });
   return filteredComplete;
@@ -154,23 +100,53 @@ function filterComplete(allCards) {
 function filterImp() {
   var allCards = filterComplete(createCardsArray());
   var filterBy = $(this).text();
-  var filteredCards = allCards.filter(function (obj){
+  var filteredCards = allCards.filter(function(obj) {
     return obj['importance'].match(filterBy);
   }); 
-  populateExistingCards(filteredCards);
+  populateCards(filteredCards);
 };
 
 function filterString() {
   var allCards = filterComplete(createCardsArray());
   var srchInp = $('.search-input').val().toLowerCase();
-  var filteredCards = allCards.filter(function (obj){
+  var filteredCards = allCards.filter(function(obj) {
     return obj['task'].toLowerCase().match(srchInp) || obj['title'].toLowerCase().match(srchInp);
   });
-  populateExistingCards(filteredCards);
+  populateCards(filteredCards);
 };
 
-function clearAllCards() {
-  $('.card-ctnr').text('');
+function fromSto(id) {
+  var $obj = JSON.parse(localStorage.getItem(id));
+  return $obj;
+};
+
+function getId(card) {
+  var cardId = $(card).closest('.to-do-card').attr('id');
+  return cardId;
+};
+
+function markComplete() {
+  var $thisCard = fromSto(getId(this));
+  disableComplete($thisCard);
+  $thisCard.complete = true;
+  toSto($thisCard);
+};
+
+function newCard() {
+  event.preventDefault();
+  var newCard = new ToDoCard(Date.now(), $('.title-input').val(), $('.task-input').val());
+  toSto(newCard);
+  prependCard(newCard);
+  clearInp();
+};
+
+function populateCards(keyValues) {
+  clearAllCards();
+  displayNum = keyValues.length < 10 ? keyValues.length : 10;
+  for (var i = keyValues.length - displayNum; i < keyValues.length; i++) {
+    var thisCard = fromSto(keyValues[i].id);
+    prependCard(thisCard);
+  };
 };
 
 function  prependCard(card) {
@@ -189,4 +165,28 @@ function  prependCard(card) {
       </footer>
     </article>`
   );
+};
+
+function renderOnLoad() {
+  var allCards = filterComplete(createCardsArray());
+  populateCards(allCards);
+};
+
+function ToDoCard(id, title, task, importance) {
+  this.id = id;
+  this.title = title;
+  this.task = task;
+  this.importance = 'normal';
+  this.complete = false;
+};
+
+function toSto(card) {
+  localStorage.setItem(card.id, JSON.stringify(card));
+};
+
+function unFocus(event) {
+  if (13 == event.keyCode) {
+    event.preventDefault();
+    $(this).blur();
+  };
 };

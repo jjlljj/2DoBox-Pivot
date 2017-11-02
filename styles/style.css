@@ -64,7 +64,7 @@ body {
   border: none;
 }
   
-/*IDEA CARDS*/
+/*CARDS*/
 .to-do-card {
   border-bottom: 1px solid #939598;
   left: 25%;
@@ -181,7 +181,7 @@ button {
 }
 
 .completed-btn {
-  background-color: #FB3640;  
+  background-color: #939598;  
   border-radius: 3px;
   bottom: 14px;
   position: absolute;
@@ -194,7 +194,7 @@ button {
 }
 
 .completed-btn:hover {
-  background-color:#EF4136;
+  background-color:#FB3640;
 }
 
 .gray-out .completed-btn {
