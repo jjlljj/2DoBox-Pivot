@@ -138,9 +138,17 @@ p {
   outline: none;
 }
 
+.gray-out {
+  opacity: .8;
+  color: #7d7f82;
+  background-color: #f2f2f2;
+  box-shadow: 1px 0px 4px #f2f2f2;
+
+}
+
 /*BUTTONS*/
 button {
-  background-color: white;
+  background-color: transparent;
   border: none;
   cursor: pointer;
   display: inline-block;
@@ -191,6 +199,11 @@ button {
   background-image: url('../images/upvote-hover.svg');
 } 
 
+.gray-out .up-btn:hover {
+  background-image: url('../images/upvote.svg');
+  cursor: default;
+}
+
 .down-btn {
   background-image: url('../images/downvote.svg');
   outline: none;
@@ -198,6 +211,11 @@ button {
 
 .down-btn:hover {
   background-image: url('../images/downvote-hover.svg');
+}
+
+.gray-out .down-btn:hover {
+  background-image: url('../images/downvote.svg');
+  cursor: default;
 }
 
 .completed-btn {
@@ -219,6 +237,12 @@ button {
 
 .completed-btn:hover {
   background-color:#EF4136;
+}
+
+.gray-out .completed-btn {
+  opacity: .8;
+  background-color: #6D6E71;
+  cursor: default;
 }
 
 /*QUALITY OPTION*/

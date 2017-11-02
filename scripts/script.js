@@ -13,6 +13,7 @@ $('.search-input').on('keyup', filterString);
 $('.show-all-btn').on('click', displayAll);
 $('.del-all-btn').on('click');
 $('.imp-filter-wrap').on('click', '.filter-btn', filterImp);
+$('.card-ctnr').on('click', '.completed-btn', markComplete)
 
 function ToDoCard(id, title, task, importance) {
   this.id = id;
@@ -56,6 +57,20 @@ function delCard() {
   $(this).closest('article').remove();
   localStorage.removeItem(getId(this));
 };
+
+function markComplete() {
+  var $thisCard = fromSto(getId(this));
+  disableComplete($thisCard);
+  $thisCard.complete = true;
+  toSto($thisCard);
+}
+
+function disableComplete(card) {
+  $(`#${card.id}`).addClass('gray-out');
+  $(`#${card.id} .up-btn, #${card.id} .down-btn`).prop('disabled', true);
+  $(`#${card.id} .delete-btn`).prop('disabled', true);
+  $(`#${card.id} .card-task, #${card.id} .card-title`).prop('contenteditable', false);
+}
 
 function clrInp() {
   $('.title-input, .task-input, .search-input').val('');
@@ -116,8 +131,11 @@ function displayAll() {
   var allCards = createCardsArray();
   clearAllCards();
   for (var i = 0; i < allCards.length; i++) {
-    var thisCard = fromSto(allCards[i].id);
-    prependCard(thisCard);
+    var $thisCard = fromSto(allCards[i].id);
+    prependCard($thisCard);
+    if ($thisCard.complete) {
+      disableComplete($thisCard);
+    };
   };
 };
 
