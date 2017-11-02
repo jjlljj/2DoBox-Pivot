@@ -1,6 +1,6 @@
-# 2DoBox-pivot by James Louge and Emily Kuckelman
+# 2DoBox-pivot
 
-Turing School Mod 1 assignment to re-create the taskBox project using another group's code. We were given their entire code base, and told to refactor and change it to fit to the 2DoBox requirements. The 2DoBox will keep the same layout as taskBox but have some key features changed. 
+This is an assignment for Turing School's Mod 1 Front End program. We were given another group's repo from a previous 'IdeaBox' project, and had to take the foreign code code base, refactor it, and add features to create a '2Do Box'. The 2DoBox has the same layout as IdeaBox, with key features changed and added. 
 
 ## Architecture
 
@@ -9,7 +9,7 @@ For this project, we’ll be increasingly thinking about the “server” and �
 * JSON and localStorage to persist data between sessions.
 
 ## Data Model
-A new 2do card will include(id, title, task, and importance) 
+A new 2Do card will include(id, title, task, and importance) 
 * The id should be a unique identifier.
 * title and task are free-form strings.
 * quality should be one of the follow: critical, high, normal, low, none.
@@ -70,6 +70,24 @@ We’d like our users to be able to easily find specific tasks they already crea
 
 ## Layout comps: 
 
-![full size image comp](http://frontend.turing.io/assets/images/projects/taskbox/taskbox-01.png)
+![full size image comp](images/ideabox-desktop.png?raw=true "Original Comp")
 
-![mobile image comp](http://frontend.turing.io/assets/images/projects/taskbox/taskbox-02.png)
+![mobile image comp](images/ideabox-mobile.png?raw=true "Original Comp mobile")
+
+## Our 2DoBox
+
+![full size image comp](images/2dobox-desktop.png?raw=true "Original Comp")
+
+![mobile image comp](images/2dobox-mobile.png?raw=true "Original Comp mobile")
+
+
+## Contributors:
+
+* **James Logue** - 2DoBox-Pivot - github: (https://github.com/jjlljj)
+* **Emily Kuckelman** - 2DoBox-Pivot - github: (https://github.com/ekuckelman)
+
+* **Nora Gully** - Contributor to original IdeaBox repo - github: (https://github.com/nogully)
+* **Michelle Gully** - AContributor to original repo - github: (https://github.com/michellehoffman)
+
+You can see the original IdeaBox repo here: (https://github.com/michellehoffman/ideabox)
+

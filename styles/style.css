@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  margin: 0px;
 }
 
 body {
@@ -22,17 +21,13 @@ body {
   width: 50%;
 }
 
-.card-ftr {
-
-}
-
 .show-all-btn {
   background-color: #00A79D;
   border-color: #00A79D;
   border-radius: 0px;
   color: #FFFFFF;
   cursor: pointer;
-  display: block;
+  display: inline-block;
   font-size: 20px;
   height: 40px;
   margin: 0 auto;
@@ -96,7 +91,6 @@ input::placeholder {
 .srch-wrap {
   padding-top: 10px;
   text-align: center;
-  margin-left: 
 }
 
 .imp-filter-wrap {
@@ -287,19 +281,68 @@ h3 .imp-val {
 }
 
 @media screen and (max-width: 536px) {
-    article {
-      left: 25%;
-    }
-    h3 {
-      display: block;
-      margin-top: 30px;
-    }
+  article {
+    left: 10%;
+    width: 80%;
+  }
+  h3 {
+    display: block;
+    margin-top: 30px;
+  }
 
-    .filter-btn {
-      margin: 0 auto 4px;
-    }
+  .filter-btn {
+    margin: 0 auto 4px;
+  }
 
-    .completed-btn {
-      width: 100%;
-    }
+  .completed-btn {
+    width: 100%;
+  }
+
+  .save-btn {
+    width: 80%;
+  }
+
+  .show-all-btn {
+    width: 80%;
+  }
+
+  input {
+    width: 80%;
+  }
+
+  article {
+    width: 80%;
+  }
+
+  .imp-filter-wrap{
+    width: 80%;
+  }
+
+}
+
+@media screen and (max-width: 350px) {
+  article {
+    width: 90%;
+    left: 5%;
+  }
+
+  .save-btn {
+    width: 90%;
+  }
+
+  .show-all-btn {
+    width: 90%;
+  }
+
+  input {
+    width: 90%;
+  }
+
+  article {
+    width: 90%;
+  }
+
+  .imp-filter-wrap{
+    width: 90%;
+  }
 }
