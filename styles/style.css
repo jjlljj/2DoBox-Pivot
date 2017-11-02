@@ -189,10 +189,6 @@ button {
   width: 200px;
 }
 
-.gray-out {
-  background-color: #939598;
-}
-
 .completed-btn:hover {
   background-color:#FB3640;
 }
