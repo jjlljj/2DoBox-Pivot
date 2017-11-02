@@ -7,7 +7,7 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-.save-btn {
+.btn-style {
   background-color: #00A79D;
   border-color: #00A79D;
   border-radius: 0px;
@@ -21,44 +21,7 @@ body {
   width: 50%;
 }
 
-.show-all-btn {
-  background-color: #00A79D;
-  border-color: #00A79D;
-  border-radius: 0px;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 20px;
-  height: 40px;
-  margin: 0 auto;
-  outline: none;
-  width: 50%;
-}
-
-
-.del-all-btn {
-  background-color: #00A79D;  
-  border-color: #00A79D;
-  border-radius: 0px;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 20px;
-  height: 40px;
-  margin: 10px;
-  outline: none;
-  width: 23.7%;
-}
-
-.box {
-  color: #00A79D;
-  font-family: 'Roboto Slab', serif;
-  font-size: 6vw;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-
-.to-do {
+.main-branding {
   color: #939598;
   font-family: 'Roboto Slab', serif;
   font-size: 6vw;
@@ -66,7 +29,11 @@ body {
   margin-bottom: 20px;
 }
 
-input {
+.main-branding-alt {
+  color: #00A79D;
+}
+
+.input-style {
   border: 1px solid #939598;
   display: inline-block;
   font-size: 20px;
@@ -77,7 +44,7 @@ input {
   width: 50%;
 }
 
-input::placeholder {
+.input-style::placeholder {
   color: #939598;
 }
 
@@ -98,7 +65,7 @@ input::placeholder {
 }
   
 /*IDEA CARDS*/
-article {
+.to-do-card {
   border-bottom: 1px solid #939598;
   left: 25%;
   padding: 20px 0px;
@@ -106,7 +73,7 @@ article {
   width: 50%;
 }
 
-h2 {
+.card-title {
   color: #6D6E71;
   display: inline-block;
   font-family: "Roboto Slab", serif;
@@ -118,11 +85,11 @@ h2 {
   width: 80%;
 }
 
-header {
+.card-hdr {
   margin-bottom: 10px;
 }
 
-p {
+.card-task {
   color: #939598;
   font-family: "Open Sans", sans-serif;
   font-size: 1.2em;
@@ -154,12 +121,12 @@ button {
 
 .filter-btn {
   background-color: #FBB040;
-  color: #FFFFFF;
   border-radius: 3px;
+  color: #FFFFFF;
   height: 25px;
+  margin: 0 auto;
   outline:none;
   width: 50px;
-  margin: 0 auto;
 }
 
 .filter-btn:hover {
@@ -175,8 +142,8 @@ button {
 
 .del-btn {
   background-image: url('../images/delete.svg');
-  position: absolute;
   outline: none;
+  position: absolute;
   right: -20px;
   top: 18px;
 }
@@ -215,19 +182,11 @@ button {
 
 .completed-btn {
   background-color: #FB3640;  
-  border-radius: 0px;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 20px;
-  height: 40px;
-  margin: 10px;
-  outline: none;
-  width: 200px;
+  border-radius: 3px;
+  bottom: 14px;
   position: absolute;
   right: -9px;
-  bottom: 14px;
-  border-radius: 3px;
+  width: 200px;
 }
 
 .gray-out {
@@ -239,13 +198,13 @@ button {
 }
 
 .gray-out .completed-btn {
-  opacity: .8;
   background-color: #6D6E71;
   cursor: default;
+  opacity: .8;
 }
 
 /*QUALITY OPTION*/
-h3 {
+.imp-title {
   bottom: 9px;
   color: #6D6E71;
   display: inline;
@@ -253,12 +212,12 @@ h3 {
   position: relative;
 }
 
-h3 .imp-title {
+.imp-title .imp-title {
   font-family: "Roboto Slab", serif;
   font-weight: 700;
 }
 
-h3 .imp-val {
+.imp-title .imp-val {
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
 }
@@ -270,7 +229,7 @@ h3 .imp-val {
 
 /*MEDIA QUERIES*/
 @media screen and (max-width: 954px) {
-  article {
+  .to-do-card {
     left: 25%;
   }
   .completed-btn {
@@ -281,11 +240,11 @@ h3 .imp-val {
 }
 
 @media screen and (max-width: 536px) {
-  article {
+  .to-do-card {
     left: 10%;
     width: 80%;
   }
-  h3 {
+  .imp-title {
     display: block;
     margin-top: 30px;
   }
@@ -298,51 +257,24 @@ h3 .imp-val {
     width: 100%;
   }
 
-  .save-btn {
+  .btn-style,
+  .input-style,
+  .to-do-card,
+  .imp-filter-wrap {
     width: 80%;
   }
-
-  .show-all-btn {
-    width: 80%;
-  }
-
-  input {
-    width: 80%;
-  }
-
-  article {
-    width: 80%;
-  }
-
-  .imp-filter-wrap{
-    width: 80%;
-  }
-
 }
 
 @media screen and (max-width: 350px) {
-  article {
-    width: 90%;
+  .to-do-card {
     left: 5%;
-  }
-
-  .save-btn {
     width: 90%;
   }
 
-  .show-all-btn {
-    width: 90%;
-  }
-
-  input {
-    width: 90%;
-  }
-
-  article {
-    width: 90%;
-  }
-
-  .imp-filter-wrap{
+  .btn-style,
+  input,
+  .to-do-card,
+  .imp-filter-wrap {
     width: 90%;
   }
 }

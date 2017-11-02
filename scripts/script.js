@@ -49,12 +49,12 @@ function fromSto(id) {
 };
 
 function getId(card) {
-  var cardId = $(card).closest('article').attr('id');
+  var cardId = $(card).closest('.to-do-card').attr('id');
   return cardId;
 };
 
 function delCard() {
-  $(this).closest('article').remove();
+  $(this).closest('.to-do-card').remove();
   localStorage.removeItem(getId(this));
 };
 
@@ -175,7 +175,7 @@ function clearAllCards() {
 
 function  prependCard(card) {
   $('.card-ctnr').prepend(
-    `<article class="2do-card" id="${card.id}">
+    `<article class="to-do-card" id="${card.id}">
       <header class="card-hdr">
         <h2 class="card-title" contenteditable="true">${card.title}</h2> 
         <button class="del-btn" name="delete button"></button>
@@ -185,7 +185,7 @@ function  prependCard(card) {
         <button class="up-btn" name="more important"></button>
         <button class="down-btn" name="less important"></button>
         <h3 class="imp-title">Importance: <span class="imp-val">${card.importance}</span></h3>
-        <button class="completed-btn">Completed Task</button>
+        <button class="completed-btn btn-style">Completed Task</button>
       </footer>
     </article>`
   );

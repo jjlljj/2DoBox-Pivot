@@ -86,8 +86,11 @@ We’d like our users to be able to easily find specific tasks they already crea
 * **James Logue** - 2DoBox-Pivot - github: (https://github.com/jjlljj)
 * **Emily Kuckelman** - 2DoBox-Pivot - github: (https://github.com/ekuckelman)
 
-* **Nora Gully** - Contributor to original IdeaBox repo - github: (https://github.com/nogully)
-* **Michelle Gully** - AContributor to original repo - github: (https://github.com/michellehoffman)
 
-You can see the original IdeaBox repo here: (https://github.com/michellehoffman/ideabox)
+Original IdeaBox repo here: (https://github.com/michellehoffman/ideabox)
+
+* **Nora Gully** - Contributor to IdeaBox repo - github: (https://github.com/nogully)
+* **Michelle Gully** - AContributor to IdeaBox repo - github: (https://github.com/michellehoffman)
+
+
 
