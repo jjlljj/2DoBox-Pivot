@@ -32,12 +32,12 @@ body {
   border-radius: 0px;
   color: #FFFFFF;
   cursor: pointer;
-  display: inline-block;
+  display: block;
   font-size: 20px;
   height: 40px;
-  margin: 10px;
+  margin: 0 auto;
   outline: none;
-  width: 23.7%;
+  width: 50%;
 }
 
 
@@ -157,6 +157,7 @@ button {
   height: 25px;
   outline:none;
   width: 50px;
+  margin: 0 auto;
 }
 
 .filter-btn:hover {
@@ -217,6 +218,10 @@ button {
   border-radius: 3px;
 }
 
+.gray-out {
+  background-color: #939598;
+}
+
 .completed-btn:hover {
   background-color:#EF4136;
 }
@@ -240,57 +245,37 @@ h3 .imp-val {
   font-weight: 400;
 }
 
-/*MEDIA QUERIES*/
-@media screen and (max-width: 800px) {
-  article {
-    left: 20%;
-  }
-
-  .save-btn,
-  .src-wrap,
-  .src-input,
-  .save-btn,
-  .show-all-btn,
-  .del-all-btn {
-    width: 50%;
-  }
-
-  /*you are working on making the srch-wrap not slide to the left*/
+.imp-filter-wrap {
+  width: 50%;
+  margin: 0 auto;
 }
 
-@media screen and (max-width: 415px) {
+/*MEDIA QUERIES*/
+@media screen and (max-width: 954px) {
   article {
-    left: 7.5%;
+    left: 25%;
   }
+  .completed-btn {
+    display: block;
+    position: unset;
+    margin: 20px auto 0;
+  }
+}
 
-  h1 {
-    font-size: 2.5em;
-  }
+@media screen and (max-width: 536px) {
+    article {
+      left: 25%;
+    }
+    h3 {
+      display: block;
+      margin-top: 30px;
+    }
 
-  h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
+    .filter-btn {
+      margin: 0 auto 4px;
+    }
 
-  button {
-    margin-right: 7px;
-  }
-  
-  p {
-    margin-bottom: 20px;
-  }
-
-  h3 {
-    line-height: 10px;
-  }
-
-  .save-btn,
-  .src-wrap,
-  .src-input,
-  .save-btn,
-  .show-all-btn,
-  .del-all-btn {
-    width: 27%;
-  }
-
+    .completed-btn {
+      width: 100%;
+    }
 }
